@@ -5,7 +5,7 @@ public class Lampy {
 	// ------------------ Instance variables ----------------
 	
 	public enum States { OFF, LOW, MED, HIGH };
-	public States setting;
+	public States setting; // this is a comment
 	
 	// ------------------ Constructor ------------------------
 
