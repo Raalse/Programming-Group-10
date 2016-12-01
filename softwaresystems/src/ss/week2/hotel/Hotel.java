@@ -26,11 +26,12 @@ public class Hotel {
 	// ------------------ Commands --------------------------
 	
 	/**
-	 * @invariant checkIn(p, n) == null || checkIn(p ,n) == room
+	 * 
 	 * @invariant getFreeRoom() == null || getFreeRoom() == room
 	 * @invariant getRoom(n) == null || getRoom(n) == room
 	 * @invariant getPassword() == null || getPassword() == pass
 	 * @invariant getName() == name
+	 * @private invariant name != null;
 	 */
 	
 	
@@ -40,6 +41,7 @@ public class Hotel {
 	 * @param p password for checking in
 	 * @param n name of new guest
 	 * @return room of the new quest or null if checkIn failed
+	 * @ensures checkIn(p, n) == null || checkIn(p ,n) == room
 	 */	
 	public Room checkIn(String p, String n) {
 		assert p.equals(null) == false;

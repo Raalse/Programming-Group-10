@@ -48,7 +48,7 @@ public class Safe {
 	 * @param password password for activating the safe
 	 */
 	/**
-	 * @ensures pass.testWord(password);
+	 * @ensures pass.testWord(password) ==> isActive();
 	 * @requires password != null;
 	 */
 	public void activate(String password) {
