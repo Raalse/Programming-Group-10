@@ -1,8 +1,23 @@
 package ss.week2.hotel;
 
+import ss.week3.pw.*;
+
 public class Password {
 	public static final String INITIAL = "password";
 	private static String pass = INITIAL;
+	private Password password;
+	private Checker checker;
+	private BasicChecker basicChecker;
+	private String factoryPassword;
+	
+	public Password(Checker checker) {
+		password = new Password();
+		factoryPassword = checker.generatePassword();
+	}
+	public Password() {
+		password = new Password(basicChecker);
+		//factoryPassword = basicChecker.generatePassword();
+	}
 
 	public boolean testWord(String test) {
 		return test.equals(pass);
@@ -24,5 +39,7 @@ public class Password {
 		}
 		return false;
 	}
+	
+	
 
 }
