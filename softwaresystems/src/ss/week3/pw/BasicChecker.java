@@ -5,11 +5,7 @@ public class BasicChecker implements Checker {
 	private String pass = "password";
 	
 	public boolean acceptable(String word) {
-		if (!word.contains(" ") && word.length() > 6) {
-			return true;
-		} else {
-			return false;
-		}
+		return !word.contains(" ") && word.length() > 6;
 	}
 	
 	public String generatePassword() {

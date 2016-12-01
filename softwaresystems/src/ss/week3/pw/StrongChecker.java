@@ -5,11 +5,7 @@ public class StrongChecker extends BasicChecker implements Checker {
 	private String pass = "password123";
 	
 	public boolean acceptable(String word) {
-		if (!word.contains(" ") && word.length() > 6 && !Character.isDigit(word.charAt(0)) && Character.isDigit(word.charAt(word.length() - 1))) {
-			return true;
-		} else {
-			return false;
-		}
+		return super.acceptable(word) && !Character.isDigit(word.charAt(0)) && Character.isDigit(word.charAt(word.length() - 1));
 	}
 	
 	public String generatePassword() {

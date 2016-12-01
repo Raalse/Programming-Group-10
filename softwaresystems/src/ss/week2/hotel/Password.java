@@ -7,29 +7,22 @@ public class Password {
 	private static String pass = INITIAL;
 	private Password password;
 	private Checker checker;
-	private BasicChecker basicChecker;
 	private String factoryPassword;
 	
 	public Password(Checker checker) {
-		password = new Password();
+		this.checker = checker;
 		factoryPassword = checker.generatePassword();
 	}
 	public Password() {
-		password = new Password(basicChecker);
-		//factoryPassword = basicChecker.generatePassword();
+		this(new BasicChecker());
 	}
 
 	public boolean testWord(String test) {
-		return test.equals(pass);
+		return test.equals(checker.generatePassword());
 	}
 	
 	public boolean acceptable(String suggestion) {
-		if (suggestion.contains(" ") || suggestion.length() < 6 == true) {
-			return false;
-		} else {
-			return true;
-		}
-			
+		return checker.acceptable(suggestion);
 	}
 	
 	public boolean setWord(String oldpass, String newpass) {
