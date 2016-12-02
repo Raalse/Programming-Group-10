@@ -9,7 +9,7 @@ public class Format {
 	}
 
 	public static void printLine(String text, double amount) {
-		System.out.format("%-10s" + "\t" + "%10.2f" + "\n", text, amount);
+		System.out.format("%-20s %10.2f \n", text, amount);
 	}
 
 }
