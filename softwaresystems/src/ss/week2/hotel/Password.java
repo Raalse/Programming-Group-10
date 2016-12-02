@@ -4,10 +4,9 @@ import ss.week3.pw.*;
 
 public class Password {
 	public static final String INITIAL = "password";
-	private static String pass = INITIAL;
-	private Password password;
+	//private static String pass = INITIAL;
 	private Checker checker;
-	private String factoryPassword;
+	protected static String factoryPassword;
 	
 	public Password(Checker checker) {
 		this.checker = checker;
@@ -18,7 +17,7 @@ public class Password {
 	}
 
 	public boolean testWord(String test) {
-		return test.equals(checker.generatePassword());
+		return test.equals(factoryPassword);
 	}
 	
 	public boolean acceptable(String suggestion) {
@@ -27,10 +26,18 @@ public class Password {
 	
 	public boolean setWord(String oldpass, String newpass) {
 		if (testWord(oldpass) && acceptable(newpass)) {
-			pass = newpass;
+			factoryPassword = newpass;
 			return true;
 		}
 		return false;
+	}
+	
+	public Checker getChecker() {
+		return this.checker;
+	}
+	
+	public String factoryPassword() {
+		return factoryPassword;
 	}
 	
 	
