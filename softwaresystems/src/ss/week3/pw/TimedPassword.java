@@ -32,5 +32,16 @@ public class TimedPassword extends Password {
 		startTime = System.currentTimeMillis();
 		return super.setWord(oldpass, newpass);
 	}
+	
+	/*public boolean testPassword(String test) {
+		return test.equals(factoryPassword) && isExpired() == false;
+	}*/
 
 }
+
+/*
+ * Overwriting testPassword (testWord in Password) in the way described (false if expired)
+ *  would make it impossible to change a password once it has expired.
+ * We need testPassword to work even when the password has expired,
+ *  in order to have a functional program.
+ */
