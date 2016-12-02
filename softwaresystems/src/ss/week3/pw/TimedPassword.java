@@ -27,5 +27,10 @@ public class TimedPassword extends Password {
 			return false;
 		}
 	}	
+	
+	public boolean setWord(String oldpass, String newpass) {
+		startTime = System.currentTimeMillis();
+		return super.setWord(oldpass, newpass);
+	}
 
 }
