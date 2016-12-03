@@ -10,7 +10,7 @@ public class Bill {
 		double getAmount();
 	}
 
-	public Bill(java.io.PrintStream theOutStream) {
+	public Bill(java.io.PrintStream theOutStream) { //System.out for console output
 		stream = theOutStream;
 	}
 	
