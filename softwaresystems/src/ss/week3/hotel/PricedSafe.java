@@ -4,15 +4,19 @@ import ss.week3.hotel.Bill.Item;
 
 public class PricedSafe extends Safe implements Item {
 
-	public PricedSafe(String password) {
-		super(password);
-		// TODO Auto-generated constructor stub
+	private double price;
+	
+	public PricedSafe(double price) {
+		this.price = price;
 	}
 
 	@Override
 	public double getAmount() {
-		// TODO Auto-generated method stub
-		return 0;
+		return price;
+	}
+	
+	public String getString() {
+		return "This safe is priced at " + this.getAmount();
 	}
 
 }

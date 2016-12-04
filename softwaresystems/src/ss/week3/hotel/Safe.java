@@ -35,10 +35,8 @@ public class Safe {
 	 * @requires password != null;
 	 */
 	
-	public Safe(String password) {
+	public Safe() {
 		pass = new Password();
-		assert password != null;
-		pass.setWord(INITIAL, password);
 	}
 	
 	// ------------------ Commands --------------------------
