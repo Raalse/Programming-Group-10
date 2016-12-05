@@ -28,3 +28,9 @@ public class BillTest {
 		assertEquals(14.99, testBill.getSum(), 0);
 	}
 }
+
+
+/*
+ * Element		Coverage	Covered Instructions	Missed Instructions		Total Instructions
+ * Bill.java		72.2 %	    26	 					10						36
+ */

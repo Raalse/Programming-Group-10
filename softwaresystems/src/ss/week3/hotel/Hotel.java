@@ -158,7 +158,6 @@ public class Hotel {
 	}
 	
 	public String getBill(String guestName, int nights, java.io.PrintStream theOutStream) {
-		double price;
 		Guest guest;
 		Bill bill = new Bill(theOutStream);
 		if (guest1.getName().equals(guestName)) {
