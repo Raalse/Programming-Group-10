@@ -19,9 +19,9 @@ public class Room {
      * @param no number of the new <code>Room</code>
      * @param s safe associated with the 
      */
-    public Room(int no, Safe safe) {
+    public Room(int no) {
     	number = no;
-    	this.safe = safe;
+    	this.safe = new Safe();
     }
 
     // ------------------ Queries --------------------------

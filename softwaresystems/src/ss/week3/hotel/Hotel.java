@@ -6,8 +6,8 @@ public class Hotel {
 	
 	public String name = "";
 	private static final String INITIAL = "password";
-	public Room room1 = new Room(1, new Safe());
-	public Room room2 = new Room(2, new Safe());
+	public PricedRoom room1 = new PricedRoom(1, 500, 43.50);
+	public PricedRoom room2 = new PricedRoom(2, 700, 46.20);
 	private Password pass;
 	public Guest guest1 = new Guest("");
 	public Guest guest2 = new Guest("");
@@ -43,7 +43,7 @@ public class Hotel {
 	 * @return room of the new quest or null if checkIn failed
 	 * @ensures checkIn(p, n) == null || checkIn(p ,n) == room
 	 */	
-	public Room checkIn(String p, String n) {
+	public PricedRoom checkIn(String p, String n) {
 		assert p.equals(null) == false;
 		assert n.equals(null) == false;
 		if (p != INITIAL) {
@@ -157,9 +157,26 @@ public class Hotel {
 		return name;
 	}
 	
-	public String getBill(String name, int nights, java.io.PrintStream theOutStream) {
+	public String getBill(String guestName, int nights, java.io.PrintStream theOutStream) {
+		double price;
+		Guest guest;
+		Bill bill = new Bill(theOutStream);
+		if (guest1.getName().equals(guestName)) {
+			guest = guest1;
+		} else if (guest2.getClass().equals(guestName)) {
+			guest = guest2;
+		} else {
+			return null;
+		}
+		for (int i = 1; i <= nights; i++) {
+			bill.newItem(guest.getRoom());
+		}
+		if (guest.getRoom().getSafe().isActive()) {
+			bill.newItem(guest.getRoom().getSafe());
+		}
 		
+		//price = (guest.getRoom().getAmount() + guest.getRoom().getSafe().getAmount()) * nights;
+		//price = guest.getRoom().getAmount() * nights + guest.getRoom().getSafe().getAmount();
 		return null;
 	}
-	
 }

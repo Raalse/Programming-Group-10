@@ -10,7 +10,7 @@ public class Guest {
 	// ------------------ Instance variables ----------------
 	
 	private String name = "";
-	private Room room = null; 
+	private PricedRoom room = null; 
 	
 	// ------------------ Constructor ------------------------
 
@@ -26,13 +26,13 @@ public class Guest {
 	// ------------------ Commands --------------------------
 
     /**
-     * Assigns a <code>Room</code> to this <code>Guest</code>.
+     * Assigns a <code>PricedRoom</code> to this <code>Guest</code>.
      * @param r the room being rented by this <code>Guest</code>;
      *        if <code>null</code> is passed, this <code>Guest</code>
      *        is homeless
      */
 	
-	public boolean checkin(Room r) {
+	public boolean checkin(PricedRoom r) {
 		
 		if (r != null && r.getGuest() == null) {
 			r.setGuest(this);
@@ -75,12 +75,12 @@ public class Guest {
      *         is not currently housed.
      */
 	
-	public Room getRoom() {
+	public PricedRoom getRoom() {
 		return room;
 	}
 	
 	/**
-	 * Returns a description of the <code>Guest</code> and his/her <code>Room</code>.
+	 * Returns a description of the <code>Guest</code> and his/her <code>PricedRoom</code>.
 	 */
 	
 	public String toString() {

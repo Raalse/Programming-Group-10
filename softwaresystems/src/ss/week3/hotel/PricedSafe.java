@@ -7,6 +7,7 @@ public class PricedSafe extends Safe implements Item {
 	private double price;
 	
 	public PricedSafe(double safePrice) {
+		super();
 		price = safePrice;
 	}
 
@@ -15,7 +16,7 @@ public class PricedSafe extends Safe implements Item {
 		return price;
 	}
 	
-	public String getString() {
+	public String toString() {
 		return "This safe is priced at " + getAmount();
 	}
 
