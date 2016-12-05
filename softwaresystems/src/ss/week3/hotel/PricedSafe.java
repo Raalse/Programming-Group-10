@@ -6,8 +6,8 @@ public class PricedSafe extends Safe implements Item {
 
 	private double price;
 	
-	public PricedSafe(double price) {
-		this.price = price;
+	public PricedSafe(double safePrice) {
+		price = safePrice;
 	}
 
 	@Override
@@ -16,7 +16,7 @@ public class PricedSafe extends Safe implements Item {
 	}
 	
 	public String getString() {
-		return "This safe is priced at " + this.getAmount();
+		return "This safe is priced at " + getAmount();
 	}
 
 }

@@ -6,8 +6,8 @@ public class Hotel {
 	
 	public String name = "";
 	private static final String INITIAL = "password";
-	public Room room1 = new Room(1, new Safe(INITIAL));
-	public Room room2 = new Room(2, new Safe(INITIAL));
+	public Room room1 = new Room(1, new Safe());
+	public Room room2 = new Room(2, new Safe());
 	private Password pass;
 	public Guest guest1 = new Guest("");
 	public Guest guest2 = new Guest("");
@@ -155,6 +155,11 @@ public class Hotel {
 	 */
 	public String getName() {
 		return name;
+	}
+	
+	public String getBill(String name, int nights, java.io.PrintStream theOutStream) {
+		
+		return null;
 	}
 	
 }
