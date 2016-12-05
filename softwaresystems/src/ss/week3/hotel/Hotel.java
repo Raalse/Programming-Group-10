@@ -173,9 +173,6 @@ public class Hotel {
 		if (guest.getRoom().getSafe().isActive()) {
 			bill.newItem(guest.getRoom().getSafe());
 		}
-		
-		//price = (guest.getRoom().getAmount() + guest.getRoom().getSafe().getAmount()) * nights;
-		//price = guest.getRoom().getAmount() * nights + guest.getRoom().getSafe().getAmount();
 		return null;
 	}
 }
