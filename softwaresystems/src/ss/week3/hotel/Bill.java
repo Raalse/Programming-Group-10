@@ -1,16 +1,18 @@
 package ss.week3.hotel;
 
+import java.io.PrintStream;
+
 public class Bill {
 	
 	public Item item;
-	public java.io.PrintStream stream;
+	public PrintStream stream;
 	private double sum = 0;
 	
 	public static interface Item {
 		double getAmount();
 	}
 
-	public Bill(java.io.PrintStream theOutStream) { //System.out for console output
+	public Bill(PrintStream theOutStream) { //System.out for console output
 		stream = theOutStream;
 	}
 	
@@ -19,7 +21,9 @@ public class Bill {
 	}
 	
 	public void close() {
-		stream.print(sum);
+		if (stream != null) {
+			stream.print(sum);
+		}
 	}
 	
 	public void newItem(Bill.Item item) {

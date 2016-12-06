@@ -10,7 +10,7 @@ public class Guest {
 	// ------------------ Instance variables ----------------
 	
 	private String name = "";
-	private PricedRoom room = null; 
+	private Room room = null; 
 	
 	// ------------------ Constructor ------------------------
 
@@ -32,8 +32,8 @@ public class Guest {
      *        is homeless
      */
 	
-	public boolean checkin(PricedRoom r) {
-		
+	public boolean checkin(Room r) {
+	
 		if (r != null && r.getGuest() == null) {
 			r.setGuest(this);
 			this.room = r;
@@ -75,7 +75,7 @@ public class Guest {
      *         is not currently housed.
      */
 	
-	public PricedRoom getRoom() {
+	public Room getRoom() {
 		return room;
 	}
 	

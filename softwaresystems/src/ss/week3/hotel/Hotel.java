@@ -1,5 +1,7 @@
 package ss.week3.hotel;
 
+import java.io.PrintStream;
+
 public class Hotel {
 	
 	// ------------------ Instance variables ----------------
@@ -157,22 +159,22 @@ public class Hotel {
 		return name;
 	}
 	
-	public String getBill(String guestName, int nights, java.io.PrintStream theOutStream) {
-		Guest guest;
+	public Bill getBill(String guestName, int nights, PrintStream theOutStream) {
+		Room room;
+		Safe safe;
 		Bill bill = new Bill(theOutStream);
-		if (guest1.getName().equals(guestName)) {
-			guest = guest1;
-		} else if (guest2.getClass().equals(guestName)) {
-			guest = guest2;
+		room = this.getRoom(guestName);
+		safe = room.getSafe();
+		if (room instanceof Bill.Item) {
+			for (int i = 1; i <= nights; i++) {
+				bill.newItem((Bill.Item) room);
+			}
+			if (safe.isActive() && safe instanceof Bill.Item) {
+				bill.newItem((Bill.Item) safe);
+			}
+			return bill;
 		} else {
 			return null;
 		}
-		for (int i = 1; i <= nights; i++) {
-			bill.newItem(guest.getRoom());
-		}
-		if (guest.getRoom().getSafe().isActive()) {
-			bill.newItem(guest.getRoom().getSafe());
-		}
-		return null;
 	}
 }

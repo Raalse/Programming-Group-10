@@ -7,7 +7,6 @@ public class PricedSafe extends Safe implements Item {
 	private double price;
 	
 	public PricedSafe(double safePrice) {
-		super();
 		price = safePrice;
 	}
 

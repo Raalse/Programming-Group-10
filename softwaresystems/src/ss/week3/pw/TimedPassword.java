@@ -7,30 +7,31 @@ public class TimedPassword extends Password {
 
 	private long validTime;
 	private long startTime;
-	private final long defaultDuration = 100000;
-	public TimedPassword(int duration) {
+	private static final long defaultDuration = 100000;
+	public TimedPassword(long duration) {
 		this.validTime = duration;
 		startTime = System.currentTimeMillis();
 	}
 
 	public TimedPassword() {
-		this.validTime = defaultDuration;
-		startTime = System.currentTimeMillis();
+		this(defaultDuration);
+		/*
+		 * this.validTime = defaultDuration;
+		 * startTime = System.currentTimeMillis();
+		 */
 	}
 	
 	public boolean isExpired() {
-		if (System.currentTimeMillis() - startTime > validTime == true) {
-			this.setWord(factoryPassword, this.getChecker().generatePassword());
+		return System.currentTimeMillis() - startTime > validTime;
+	}	
+	
+	public boolean setWord(String oldpass, String newpass) {
+		if (super.setWord(oldpass, newpass)) {
 			startTime = System.currentTimeMillis();
 			return true;
 		} else {
 			return false;
 		}
-	}	
-	
-	public boolean setWord(String oldpass, String newpass) {
-		startTime = System.currentTimeMillis();
-		return super.setWord(oldpass, newpass);
 	}
 	
 	/*public boolean testPassword(String test) {
