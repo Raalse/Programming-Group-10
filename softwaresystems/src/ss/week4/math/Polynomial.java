@@ -37,8 +37,8 @@ public class Polynomial implements Function {
 	 */
 	@Override
 	public Function derivative() {
-		Sum derivativeSum = new Sum(new Constant(0), new Constant(0));
-		for (int i = 0; i < polynomial.length; i++) {
+		Sum derivativeSum = new Sum(polynomial[0].derivative(), polynomial[1].derivative());
+		for (int i = 2; i < polynomial.length; i++) {
 			derivativeSum = new Sum(derivativeSum, polynomial[i].derivative());
 		}
 		return derivativeSum;

@@ -9,8 +9,8 @@ package ss.week4.math;
  */
 public class Product implements Function {
 
-	private Function function1;
-	private Function function2;
+	protected Function function1;
+	protected Function function2;
 	
 	/**
 	 * 
