@@ -40,7 +40,7 @@ public class Constant implements Function {
 	 * @see ss.week4.Function#toString(ss.week4.Function)
 	 */
 	@Override
-	public String toString(Function function) {
+	public String toString() {
 		return "" + value;
 	}
 

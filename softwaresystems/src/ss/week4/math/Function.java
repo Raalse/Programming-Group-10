@@ -17,5 +17,5 @@ public interface Function {
 	
 	public Function derivative();
 	
-	public String toString(Function function);
+	public String toString();
 }
