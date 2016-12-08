@@ -7,7 +7,7 @@ package ss.week4.math;
  * @author raalse
  *
  */
-public class Constant implements Function {
+public class Constant implements Function, Integrandable {
 
 	
 	private double value;
@@ -42,6 +42,11 @@ public class Constant implements Function {
 	@Override
 	public String toString() {
 		return "" + value;
+	}
+	
+	@Override
+	public Function integrand() {
+		return new LinearProduct(this, new Exponent(1));
 	}
 
 }

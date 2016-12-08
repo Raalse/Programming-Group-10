@@ -7,7 +7,7 @@ package ss.week4.math;
  * @author raalse
  *
  */
-public class Polynomial implements Function {
+public class Polynomial implements Function, Integrandable {
 
 	private LinearProduct[] polynomial;
 	
@@ -37,11 +37,26 @@ public class Polynomial implements Function {
 	 */
 	@Override
 	public Function derivative() {
+		if (polynomial.length == 1) {
+			return polynomial[0].derivative();
+		}
 		Sum derivativeSum = new Sum(polynomial[0].derivative(), polynomial[1].derivative());
 		for (int i = 2; i < polynomial.length; i++) {
 			derivativeSum = new Sum(derivativeSum, polynomial[i].derivative());
 		}
 		return derivativeSum;
+	}
+	
+	@Override
+	public Function integrand() {
+		if (polynomial.length == 1) {
+			return polynomial[0].integrand();
+		}
+		Sum integralSum = new Sum(polynomial[0].integrand(), polynomial[1].integrand());
+		for (int i = 2; i < polynomial.length; i++) {
+			integralSum = new Sum(integralSum, polynomial[i].integrand());
+		}
+		return integralSum;
 	}
 
 }

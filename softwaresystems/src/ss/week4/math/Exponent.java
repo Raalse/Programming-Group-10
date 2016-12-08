@@ -7,7 +7,7 @@ package ss.week4.math;
  * @author raalse
  *
  */
-public class Exponent implements Function {
+public class Exponent implements Function, Integrandable {
 
 	private int power;
 	
@@ -44,6 +44,11 @@ public class Exponent implements Function {
 	@Override
 	public String toString() {
 		return power + "";
+	}
+	
+	@Override
+	public Function integrand() {
+		return new LinearProduct(new Constant(1 / (power + 1)), new Exponent(power + 1));
 	}
 	
 }
