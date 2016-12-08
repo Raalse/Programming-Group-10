@@ -12,7 +12,7 @@ public class ConstantTest {
     private static final double DELTA = 1e-15;
     private static final double CONSTANT_VALUE = Math.PI;
     private Constant constant;
-
+    
     @Before
     public void setUp() {
         constant = new Constant(CONSTANT_VALUE);
