@@ -60,5 +60,14 @@ public class Polynomial implements Function, Integrandable {
 		}
 		return integralSum;
 	}
+	
+	@Override
+	public String toString() {
+		String output = polynomial[0].toString();
+		for (int i = 1; i < polynomial.length; i++) {
+			output += " + " + polynomial[i].toString();
+		}
+		return output;
+	}
 
 }

@@ -43,12 +43,12 @@ public class Exponent implements Function, Integrandable {
 	
 	@Override
 	public String toString() {
-		return power + "";
+		return "x^" + power;
 	}
 	
 	@Override
 	public Function integrand() {
-		return new LinearProduct(new Constant(1 / (power + 1)), new Exponent(power + 1));
+		return new LinearProduct(new Constant(1 / ((double) power + 1)), new Exponent(power + 1));
 	}
 	
 }

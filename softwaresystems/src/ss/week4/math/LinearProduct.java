@@ -29,4 +29,9 @@ public class LinearProduct extends Product implements Function, Integrandable {
 		}
 		return null;
 	}
+	
+	@Override
+	public String toString() {
+		return super.toString();
+	}
 }

@@ -18,7 +18,7 @@ import ss.week4.math.Polynomial;
  */
 public class PolynomialTest {
 
-	private static final double DELTA = 1e-15;
+	private static final double DELTA = 0.1;
 	private static final double CONSTANT_VALUE = 5;
 	private Polynomial polynomial;
 	private double[] arrayz = new double[4];

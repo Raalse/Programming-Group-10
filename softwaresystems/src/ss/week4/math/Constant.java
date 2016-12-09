@@ -41,12 +41,12 @@ public class Constant implements Function, Integrandable {
 	 */
 	@Override
 	public String toString() {
-		return "" + value;
+		return String.valueOf(value);
 	}
 	
 	@Override
 	public Function integrand() {
-		return new LinearProduct(this, new Exponent(1));
+		return new LinearProduct(new Constant(value), new Exponent(1));
 	}
 
 }
