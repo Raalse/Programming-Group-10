@@ -15,8 +15,9 @@ public class Polynomial implements Function, Integrandable {
 	 * 
 	 */
 	public Polynomial(double[] polynomial) {
+		this.polynomial = new LinearProduct[polynomial.length];
 		for (int i = 0; i < polynomial.length; i++) {
-			this.polynomial[i] = new LinearProduct(new Constant(polynomial[i]), new Exponent(polynomial.length - i));
+			this.polynomial[i] = new LinearProduct(new Constant(polynomial[i]), new Exponent(polynomial.length - i - 1));
 		}
 	}
 
@@ -26,7 +27,7 @@ public class Polynomial implements Function, Integrandable {
 	@Override
 	public double apply(double number) {
 		double sum = 0;
-		for (int i = 0; i < number; i++) {
+		for (int i = 0; i < polynomial.length; i++) {
 			sum += polynomial[i].apply(number);
 		}
 		return sum;
@@ -52,8 +53,9 @@ public class Polynomial implements Function, Integrandable {
 		if (polynomial.length == 1) {
 			return polynomial[0].integrand();
 		}
-		Sum integralSum = new Sum(polynomial[0].integrand(), polynomial[1].integrand());
-		for (int i = 2; i < polynomial.length; i++) {
+		//Sum integralSum = new Sum(polynomial[0].integrand(), polynomial[1].integrand());
+		Sum integralSum = new Sum(new Constant(0), new Constant(0));
+		for (int i = 0; i < polynomial.length; i++) {
 			integralSum = new Sum(integralSum, polynomial[i].integrand());
 		}
 		return integralSum;
