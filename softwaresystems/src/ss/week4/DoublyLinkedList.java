@@ -19,12 +19,59 @@ public class DoublyLinkedList<Element> {
     //@ ensures this.getNode(index).equals(element);
     public void add(int index, Element element) {
         // TODO: implement, see exercise P-4.17
+    	
+    	if (size == 0) {
+    		Node p = new Node(element);
+    		head.next = p;
+    		p.previous = head;
+    	} else {
+    		if (index == 0) {
+    			Node p = new Node(element);
+    			p.next = head.next;
+    			head.next = p;
+        		p.previous = head;
+    		} else {
+    			if (index == size) {
+    				Node p = new Node(element);
+    				Node q = getNode(size - 1);
+    				q.next = p;
+    				p.previous = q;
+    			} else {
+    				Node p = new Node(element);
+    				Node q = getNode(index);
+    				p.next = q.next;
+    				p.previous = q;
+    				q.next = p;
+    				p.next.previous = p;
+    			}
+    		}
+    	}
+    	size++;
     }
 
     //@ requires 0 <= index && index < this.size;
     //@ ensures this.size == \old(size) - 1;
     public void remove(int index) {
         // TODO: implement, see exercise P-4.17
+    	if (size == 0) {
+    		return;
+    	} else {
+    		if (index == 0) {
+    			Node p = getNode(index + 1);
+    			p.previous = head;
+    			head.next = p;
+    		} else {
+    			if (index == size - 1) {
+    				Node p = getNode(index - 1);
+    				p.next = null;
+    			} else {
+    				Node p = getNode(index);
+    				p.previous.next = p.next;
+    				p.next.previous = p.previous;
+    			}
+    		}
+    	}
+    	size--;
     }
 
     //@ requires 0 <= index && index < this.size;
