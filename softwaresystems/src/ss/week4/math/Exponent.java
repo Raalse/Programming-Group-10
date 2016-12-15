@@ -48,7 +48,7 @@ public class Exponent implements Function, Integrandable {
 	
 	@Override
 	public Function integrand() {
-		return new LinearProduct(new Constant(1 / ((double) power + 1)), new Exponent(power + 1));
+		return new LinearProduct(new Constant(1.0 / (power + 1)), new Exponent(power + 1));
 	}
 	
 }

@@ -53,9 +53,9 @@ public class Polynomial implements Function, Integrandable {
 		if (polynomial.length == 1) {
 			return polynomial[0].integrand();
 		}
-		//Sum integralSum = new Sum(polynomial[0].integrand(), polynomial[1].integrand());
-		Sum integralSum = new Sum(new Constant(0), new Constant(0));
-		for (int i = 0; i < polynomial.length; i++) {
+		Sum integralSum = new Sum(polynomial[0].integrand(), polynomial[1].integrand());
+		//Sum integralSum = new Sum(new Constant(0), new Constant(0));
+		for (int i = 2; i < polynomial.length; i++) {
 			integralSum = new Sum(integralSum, polynomial[i].integrand());
 		}
 		return integralSum;
