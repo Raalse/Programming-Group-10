@@ -29,6 +29,7 @@ public class Board {
      */
     //@ ensures (\forall int i; 0 <= i & i < DIM * DIM; this.getField(i) == Mark.EMPTY);
     public Board() {
+    	fields = new Mark[DIM * DIM];
     	reset();
     }
 
@@ -56,14 +57,14 @@ public class Board {
     //@ requires 0 <= col & col < DIM;
     /*@pure*/
     public int index(int row, int col) {
+    	if (row == 0) {
+    		return col;
+    	}
     	if (row == 1) {
-    		return col - 1;
+    		return col + 3;
     	}
     	if (row == 2) {
-    		return col + 2;
-    	}
-    	if (row == 3) {
-    		return col + 5;
+    		return col + 6;
     	}
         return 0;
     }
@@ -314,7 +315,9 @@ public class Board {
     //@ requires this.isField(i);
     //@ ensures this.getField(i) == m;
     public void setField(int i, Mark m) {
-    	fields[i] = m;
+    	if (m == Mark.EMPTY || this.getField(i) == Mark.EMPTY) {
+    		fields[i] = m;
+    	}
     }
 
     /**

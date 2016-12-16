@@ -81,10 +81,10 @@ public class Game {
      * Prints a question which can be answered by yes (true) or no (false).
      * After prompting the question on standard out, this method reads a String
      * from standard in and compares it to the parameters for yes and no. If the
-     * user inputs a different value, the prompt is repeated and te method reads
+     * user inputs a different value, the prompt is repeated and the method reads
      * input again.
      * 
-     * @parom prompt the question to print
+     * @param prompt the question to print
      * @param yes
      *            the String corresponding to a yes answer
      * @param no
@@ -119,6 +119,12 @@ public class Game {
      */
     private void play() {
         // TODO: implement, see P-4.20
+    	update();
+    	while (!board.gameOver()) {
+    		players[current].makeMove(board);
+    		current = (current + 1) % NUMBER_PLAYERS;
+    		update();
+    	}
     }
 
     /**
