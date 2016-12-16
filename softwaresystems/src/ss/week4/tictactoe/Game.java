@@ -125,6 +125,7 @@ public class Game {
     		current = (current + 1) % NUMBER_PLAYERS;
     		update();
     	}
+    	printResult();
     }
 
     /**

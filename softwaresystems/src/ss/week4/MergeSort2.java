@@ -21,8 +21,8 @@ public class MergeSort2 {
 		int high = list.size();
 		int mid = high / 2;
 		
-		List<Elem> left = list.subList(0, 0);
-    	List<Elem> right = list.subList(0, 0);
+		List<Elem> left;
+    	List<Elem> right;
 		
 		if (list.size() == 2) {
 			left = list.subList(0, 1);
@@ -31,7 +31,7 @@ public class MergeSort2 {
 			left = list.subList(low, mid);
 			right = list.subList(mid + 1, high);
 		}
-		
+		System.out.println("Left: " + left + "\nRight: " + right + "\n");
 		left = mergeSort(left);
 		right = mergeSort(right);
 		

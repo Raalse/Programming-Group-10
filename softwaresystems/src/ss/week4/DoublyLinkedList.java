@@ -57,9 +57,13 @@ public class DoublyLinkedList<Element> {
     		return;
     	} else {
     		if (index == 0) {
-    			Node p = getNode(index + 1);
-    			p.previous = head;
-    			head.next = p;
+    			if (size > 1) {
+    				Node p = getNode(index + 1);
+	    			p.previous = head;
+	    			head.next = p;
+    			} else {
+    				head = new Node(null);
+    			}
     		} else {
     			if (index == size - 1) {
     				Node p = getNode(index - 1);
