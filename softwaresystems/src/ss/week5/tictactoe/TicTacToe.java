@@ -15,18 +15,23 @@ public class TicTacToe {
     	Player player1;
     	Player player2;
     	Strategy naive = new NaiveStrategy();
+    	Strategy smart = new SmartStrategy();
     	
     	if (args[0].equals("-N")) {
     		player1 = new ComputerPlayer(Mark.XX);
-    	} else {
-    		player1 = new HumanPlayer(args[0], Mark.XX);
-    	}
+    	} else if (args[0].equals("-S")) {
+    		player1 = new ComputerPlayer(Mark.XX, smart);
+	    } else {
+	    	player1 = new HumanPlayer(args[0], Mark.XX);
+	    }
     	
     	if (args[1].equals("-N")) {
     		player2 = new ComputerPlayer(Mark.OO);
-    	} else {
-    		player2 = new HumanPlayer(args[1], Mark.OO);
-    	}
+    	} else if (args[1].equals("-S")) {
+    		player2 = new ComputerPlayer(Mark.OO, smart);
+	    } else {
+	    	player2 = new HumanPlayer(args[1], Mark.OO);
+	    }
     	
         Game match = new Game(player1, player2);
         
