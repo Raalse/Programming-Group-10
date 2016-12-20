@@ -11,19 +11,15 @@ import java.util.Collection;
 public class MapUtil {
 	
 	/**
-	 * @requires map != null;
-	 * @return boolean
-	 * @pure
-	 */
-	public static <K, V> boolean isOneOnOne(Map<K, V> map) {
+     * @ensures \result == (\forAll K x,y; K.containsKey(x) && K.containsKey(y) && x != y; K.get(x) != K.get(y));
+     */
+	/** @pure */ public static <K, V> boolean isOneOnOne(Map<K, V> map) {
     	//Collection<K> values = map.values();
-    	Set<K> jk = map.keySet();
-    	Collection<V> jv = map.values();
     	int counter;
     	//Iterator <V> i = jk.iterator();
-    	for (V i: jv) {
+    	for (V i: map.values()) {
     		counter = 0;
-    		for (K j: jk) {
+    		for (K j: map.keySet()) {
     			if (i == map.get(j)) {
     				counter++;
     			}
@@ -36,12 +32,6 @@ public class MapUtil {
     }
 	
 	public static <K, V> boolean isSurjectiveOnRange(Map<K, V> map, Set<V> range) {
-		Set<K> set = map.keySet();
-		for (K set2: set) {
-		 	if (!map.containsKey(set2)) {
-		 		return false;
-		 	}
-		}
 		for (V range2: range) {
 		 	if (!map.containsValue(range2)) {
 		 		return false;
@@ -52,8 +42,7 @@ public class MapUtil {
 	
 	public static <K, V> Map<V, Set<K>> inverse(Map<K, V> map) {
         Map<V, Set<K>> output = new HashMap<V, Set<K>>();
-        Set<K> set = map.keySet();
-        for (K set2:set) {
+        for (K set2:map.keySet()) {
         	V val = map.get(set2);
         	if (output.containsKey(val)) {
         		Set<K> val2 = output.get(val);
@@ -68,12 +57,11 @@ public class MapUtil {
 	
 	public static <K, V> Map<V, K> inverseBijection(Map<K, V> map) {
 		Map<V, K> output = new HashMap<V, K>();
-        Set<K> set = map.keySet();
         Collection<V> setv = map.values();
         if (!(isOneOnOne(map) && isSurjectiveOnRange(map, new HashSet<V>(setv)))) {
         	return null;
         }
-        for (K set2:set) {
+        for (K set2:map.keySet()) {
         	V val = map.get(set2);
         	output.put(val, set2);
         }
@@ -81,8 +69,7 @@ public class MapUtil {
 	}
 	
 	public static <K, V, W> boolean compatible(Map<K, V> f, Map<V, W> g) {
-        Collection<V> setv = f.values();
-        for (V setv2:setv) {
+        for (V setv2:f.values()) {
         	if (!g.containsKey(setv2)) {
         		return false;
         	}
@@ -95,10 +82,8 @@ public class MapUtil {
         	return null;
         }
         Map<K, W> output = new HashMap<K, W>();
-        Set<K> set = f.keySet();
-        Set<V> setv = g.keySet();
-        for (K set2:set) {
-        	for (V setv2:setv) {
+        for (K set2:f.keySet()) {
+        	for (V setv2:g.keySet()) {
         		if (setv2 == f.get(set2)) {
         			output.put(set2, g.get(setv2));
         		}
