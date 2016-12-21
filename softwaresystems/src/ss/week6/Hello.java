@@ -24,7 +24,7 @@ public class Hello {
 		while (in.hasNextLine() && !(name = in.nextLine()).equals("")) {
 			System.out.println("Hello " + name);
 		}
-
+		in.close();
 	}
 
 }
