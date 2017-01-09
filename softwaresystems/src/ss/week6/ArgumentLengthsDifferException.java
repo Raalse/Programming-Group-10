@@ -9,11 +9,15 @@ package ss.week6;
  */
 public class ArgumentLengthsDifferException extends TooFewArgumentsException {
 
+	int a;
+	int b;
+	
 	/**
 	 * 
 	 */
-	public ArgumentLengthsDifferException() {
-		// TODO Auto-generated constructor stub
+	public ArgumentLengthsDifferException(int a, int b) {
+		this.a = a;
+		this.b = b;
 	}
 
 	/**
@@ -51,6 +55,12 @@ public class ArgumentLengthsDifferException extends TooFewArgumentsException {
 			boolean writableStackTrace) {
 		super(message, cause, enableSuppression, writableStackTrace);
 		// TODO Auto-generated constructor stub
+	}
+	
+	@Override
+	public String getMessage() {
+		return "error: length of command line arguments "
+                + "differs (" + a  + ", " + b  + ")";
 	}
 
 }

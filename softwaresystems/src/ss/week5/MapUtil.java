@@ -42,7 +42,7 @@ public class MapUtil {
 	}
 	
 	/**
-	 * @ensures \result == (\forAll K x; map.inverse(map) == x);
+	 * @ensures \forAll K x; result.contains(x);
 	 */
     public static <K, V> Map<V, Set<K>> inverse(Map<K, V> map) {
         Map<V, Set<K>> output = new HashMap<V, Set<K>>();
@@ -61,7 +61,7 @@ public class MapUtil {
 	}
     
     /**
-     * @ensures \result == (\forAll K x; map.inverseBijection(map) == x);
+     * @ensures \forAll K x; \result.contains(x);
      */
 	public static <K, V> Map<V, K> inverseBijection(Map<K, V> map) {
 		Map<V, K> output = new HashMap<V, K>();
@@ -78,7 +78,7 @@ public class MapUtil {
 	}
 	
 	/**
-	 * @ensures (\forAll K x; (\exists V y; f.get(x) == y && g.values().contains(y))) ==> \result == true;
+	 * @ensures \result == (\forAll K x; (\exists V y; f.get(x) == y && g.values().contains(y)));
 	 */
 	/** @pure */public static <K, V, W> boolean compatible(Map<K, V> f, Map<V, W> g) {
         Collection<V> setv = f.values();
@@ -91,7 +91,7 @@ public class MapUtil {
 	}
 	
 	/**
-	 * @ensures \result == (\forAll K x; (\forAll V y; f.get(x) == y; g.values().contains(y)));
+	 * @ensures \result == (\forAll K x; (\exists V y; f.get(x) == y; g.values().contains(y)));
 	 */
 	public static <K, V, W> Map<K, W> compose(Map<K, V> f, Map<V, W> g) {
         if (!compatible(f, g)) {

@@ -39,7 +39,11 @@ public class SmartStrategy implements Strategy {
 				if (copy1.isWinner(m)) {
 					return i;
 				}
-				
+			}
+		}
+		
+		for (int i = 0; i < dimensions; i++) {
+			if (b.isEmptyField(i)) {
 				Board copy2 = b.deepCopy();
 				copy2.setField(i, m.other());
 				if (copy2.isWinner(m.other())) {

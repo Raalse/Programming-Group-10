@@ -26,9 +26,7 @@ public class ComputerPlayer extends Player {
 	}
 	
 	public ComputerPlayer(Mark mark) {
-		super("Naive", mark);
-		this.mark = mark;
-		strategy = new NaiveStrategy();
+		this(mark, new NaiveStrategy());
 	}
 
 	/* (non-Javadoc)

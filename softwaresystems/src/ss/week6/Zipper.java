@@ -21,8 +21,7 @@ public class Zipper {
     	if (s1 == null || s2 == null) {
             throw new TooFewArgumentsException("error: must pass two command line arguments");
         } else if (s1.length() != s2.length()) {
-            throw new ArgumentLengthsDifferException("error: length of command line arguments "
-                    + "differs (" + s1.length() + ", " + s2.length() + ")");
+            throw new ArgumentLengthsDifferException(s1.length(), s2.length());
         } else {
         	String result = "";
             for (int i = 0; i < s1.length(); i++) {
