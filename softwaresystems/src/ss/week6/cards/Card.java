@@ -1,10 +1,28 @@
 package ss.week6.cards;
 
-public class Card
-{
+import java.io.PrintWriter;
+import java.io.FileWriter;
+import java.io.File;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.EOFException;
+import java.io.BufferedReader;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.util.Scanner;
+
+public class Card implements Serializable{
 
 	// ---- constants -----------------------------------
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	// ranks are 2, ..., 9 and:
 	public static final char JACK = 'J';
 	public static final char QUEEN = 'Q';
@@ -320,4 +338,103 @@ public class Card
 	public boolean isInRankBefore(Card card) {
 		return isRankFollowing(this.getRank(), card.getRank());
 	}
+	
+	public static Card read(BufferedReader in) throws EOFException {
+		String line = null;
+		String suit;
+		String rank;
+		char s;
+		char r;
+		
+		try {
+			line = in.readLine();
+		} catch (IOException ex) {
+			return null;
+		}
+
+		Scanner input = new Scanner(line);
+		suit = input.next();
+		s = suitString2Char(suit);
+		rank = input.next();
+		r = rankString2Char(rank);
+		input.close();
+		if (isValidSuit(s) && isValidRank(r)) {
+			Card card = new Card(s, r);
+			return card;
+		} else {
+			return null;
+		}
+	}
+	
+	public void write(PrintWriter printer) throws IOException {
+		printer.println(this.toString());
+	}
+	
+	public static Card read(DataInputStream dataIn) {
+		char suit;
+		char rank;
+		
+		try {
+			rank = dataIn.readChar();
+			suit = dataIn.readChar();
+		} catch (IOException ex) {
+			return null;
+		}
+		
+		if (isValidSuit(suit) && isValidRank(rank)) {
+			Card card = new Card(suit, rank);
+			return card;
+		} else {
+			return null;
+		}
+	}
+
+	public void write(DataOutputStream dataOut) throws IOException {
+		dataOut.writeChar(this.getRank());
+		dataOut.writeChar(this.getSuit());
+	}
+	
+	public static Card read(ObjectInputStream objectIn) {
+		try {
+			return (Card) objectIn.readObject();	
+		} catch (IOException ex) {
+			return null;
+		} catch (ClassNotFoundException e) {
+			return null;
+		}
+	}
+
+	public void write(ObjectOutputStream objectOut) throws IOException {
+		objectOut.writeObject(this);
+	}
+	
+	public static void main(String[] args) {		
+        PrintWriter output = null;
+        try {
+        	if (args.length == 0) {
+        		output = new PrintWriter(System.out);
+        	} else {
+                output = new PrintWriter(new FileWriter(args[0]));
+        	}
+        	output.println(new Card('H', 'J'));
+        	output.println(new Card('D', 'K'));
+        	output.println(new Card('S', '2'));
+        	output.println(new Card('C', '8'));
+        	output.flush();
+        } catch (IOException ex) {
+    	    //Handle Exception
+    	    System.out.println(ex.toString());
+            System.out.println("Could not find file " + args[0]);  
+        } finally {
+            if (output != null) {
+            	output.close();
+            }
+       	}
+	}
 }
+
+/* 	  Data-based communication appears to be the least costly time-wise,
+ *  as evidenced by the runtime of the individual tests.
+ *    It is also the least costly memory wise, as it uses primitive data values
+ *  and strings, where the values are stored as a series of bytes.
+ */

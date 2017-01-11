@@ -19,12 +19,14 @@ public class Words {
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		int i = 0;
 		Scanner in = new Scanner(System.in);
 		String sentence;
 		String firstWord;
 		System.out.println("Please write a sentence (or 'end' to terminate):");
 		while (in.hasNextLine()) {
 			firstWord = in.next();
+			i++;
 			if (firstWord.equals("end")) {
 				in.close();
 				break;

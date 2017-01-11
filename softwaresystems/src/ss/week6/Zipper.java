@@ -16,10 +16,10 @@ public class Zipper {
     
     Exception exception;
     
-    public static String zip2(String s1, String s2) throws TooFewArgumentsException {
+    public String zip2(String s1, String s2) throws TooFewArgumentsException, ArgumentLengthsDifferException {
     	
     	if (s1 == null || s2 == null) {
-            throw new TooFewArgumentsException("error: must pass two command line arguments");
+            throw new TooFewArgumentsException();
         } else if (s1.length() != s2.length()) {
             throw new ArgumentLengthsDifferException(s1.length(), s2.length());
         } else {
@@ -36,10 +36,8 @@ public class Zipper {
         String s1 = args.length >= 1 ? args[0] : null;
         String s2 = args.length >= 2 ? args[1] : null;
         try  { 
-        	System.out.println(zip2(s1, s2));
-        } catch (ArgumentLengthsDifferException exception) {
-        	System.out.println(exception.getMessage());
-        } catch (TooFewArgumentsException exception) {
+        	System.out.println(new Zipper().zip2(s1, s2));
+        } catch (WrongArgumentException exception) {
         	System.out.println(exception.getMessage());
         }
         
