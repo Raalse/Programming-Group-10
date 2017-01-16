@@ -76,5 +76,5 @@ public class Ball {
 	private int x = 0; // horizontal position of ball
 	private int y = 0; // vertical   position of ball
 	private int dx = 2; // horizontal displacement per move
-	private int dy = 2; // vertical   displacment per move  
+	private int dy = 2; // vertical   displacement per move  
 }

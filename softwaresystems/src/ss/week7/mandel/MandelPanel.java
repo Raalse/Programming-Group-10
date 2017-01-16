@@ -11,8 +11,13 @@ import javax.swing.JPanel;
  * @author Martin Kalin, aangepast door Arend Rensink
  * @version 15-01-2002
  */
-class MandelPanel extends JPanel
-{
+class MandelPanel extends JPanel implements Runnable {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public void draw() {
 		(new MandelThread(this)).start();
 	}
@@ -110,5 +115,43 @@ class MandelPanel extends JPanel
 			}
 		}
 		COLORS[MAX_COLORS] = Color.white;
+	}
+
+	@Override
+	public void run() {
+		Graphics g = getGraphics();
+		int width = getWidth();
+		int height = getHeight();
+		pixels = new Color[width][height];
+		double xstep = DIV / width;
+		double ystep = DIV / height;
+		double y = Y_START;
+		for (int j = 0; j < height; y += ystep, j++) {
+			double x = X_START;
+			for (int i = 0; i < width; x += xstep, i++) {
+				double c1Real = x;
+				double c1Imag = y;
+				double c2Real = 0.0;
+				double c2Imag = 0.0;
+				int iter;
+				double spread = 0.0;
+				for (iter = 0; iter < MAX_COLORS && spread < MAX_SPREAD; iter++) {
+					double real = c1Real + c2Real;
+					double imag = c1Imag + c2Imag;
+					c2Real = real * real - imag * imag;
+					c2Imag = 2 * real * imag;
+					spread = c2Real * c2Real + c2Imag * c2Imag;
+				}
+				g.setColor(COLORS[iter]);
+				g.fillRect(i, j, 1, 1);
+				pixels[i][j] = COLORS[iter]; // sla de tekening op
+			}
+			try {
+				Thread.sleep(20);
+			} catch (InterruptedException e) {
+				return;
+			}
+		}
+		
 	}
 }

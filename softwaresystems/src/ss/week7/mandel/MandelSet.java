@@ -13,7 +13,7 @@ import javax.swing.JMenuItem;
 
 /**
  * Drawing the mandelbrot set is a time consuming process.
- * The program is meant to illustrate the use of a thread for this proces
+ * The program is meant to illustrate the use of a thread for this process
  * so the GUI buttons are still responsive to user actions.
  * @author: Martin Kalin
  */
@@ -28,7 +28,9 @@ public class MandelSet {
 		JMenuItem draw = new JMenuItem("Draw", 'D');
 		draw.addActionListener(new AbstractAction() {
 			public void actionPerformed(ActionEvent e) {
-				canvas.draw();
+				//canvas.draw();
+				//canvas.drawMandel();
+				new Thread(canvas).start();
 			}
 		});
 		JMenuItem exit = new JMenuItem("Exit", 'E');
