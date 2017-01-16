@@ -3,7 +3,7 @@ package ss.week7;
 public class IntCell {
     private int contents = 0;
 
-    public void add(int amount) {
+    public synchronized void add(int amount) {
         contents = contents + amount;
     }
     public int get() {
@@ -34,7 +34,7 @@ class Adder extends Thread {
         this.cell = cellArg;
         this.amount = amountArg;
     }
-    public void run() {
+    public synchronized void run() {
         cell.add(amount);
     }
 }

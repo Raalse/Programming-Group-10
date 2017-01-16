@@ -67,7 +67,7 @@ public class ClientHandler extends Thread {
      * @throws IOException
      */
     private void listRecipes(Writer out) throws IOException {
-    	File[] files = new File("recipes").listFiles();
+    	File[] files = new File("/Users/raalse/git/ss/softwaresystems/src/ss/week7/recipeserver/recipes").listFiles();
     	for (File file : files) {
 			out.write(file.getName() + System.lineSeparator());
 		}
@@ -80,7 +80,7 @@ public class ClientHandler extends Thread {
      * @throws IOException 
      */
     private void showRecipe(String recipeName, Writer out) throws IOException {
-    	String recipeFilename = "recipes" + File.separator + recipeName;
+    	String recipeFilename = "/Users/raalse/git/ss/softwaresystems/src/ss/week7/recipeserver/recipes" + File.separator + recipeName;
     	System.out.println("Sending " + recipeFilename);
     	BufferedReader br = null;
 		try {
