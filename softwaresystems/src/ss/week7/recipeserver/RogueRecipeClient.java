@@ -53,7 +53,7 @@ public class RogueRecipeClient {
         }
         
         
-        String command = "GET cd ../RecipeServer.java";
+        String command = "GET ../RecipeServer.java";
 
 
         // try to open a Socket to the server
