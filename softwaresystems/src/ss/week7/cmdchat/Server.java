@@ -32,7 +32,8 @@ public class Server {
     private List<ClientHandler> threads;
     /** Constructs a new Server object */
     public Server(int portArg) {
-        // TODO insert body
+    	this.port = portArg;
+    	this.threads = new Vector<ClientHandler>();
     }
     
     /**
@@ -42,7 +43,16 @@ public class Server {
      * communication with the Client.
      */
     public void run() {
-        // TODO insert body
+    	try (ServerSocket ssock = new ServerSocket(port);) {
+    		int i = 0; while (true) {
+    		  Socket sock = ssock.accept();
+    		ClientHandler handler = new ClientHandler(this, sock); print("[client no. " + (++i) + " connected.]"); handler.announce();
+    		handler.start();
+    		addHandler(handler);
+    		   }
+    		} catch (IOException e) {
+    			e.printStackTrace();
+    		}
     }
     
     public void print(String message){
@@ -55,7 +65,11 @@ public class Server {
      * @param msg message that is send
      */
     public void broadcast(String msg) {
-        // TODO insert body
+    	print(msg);
+        // threads could be modified in removeHandler() while iterating over
+        // it here. Therefore iterate over clone of threads to avoid
+        // concurrency problems.
+    	//(new Vector<>(threads)).forEach(handler -> handler.sendMessage(msg));
     }
     
     /**
@@ -63,7 +77,7 @@ public class Server {
      * @param handler ClientHandler that will be added
      */
     public void addHandler(ClientHandler handler) {
-        // TODO insert body
+    	threads.add(handler);
     }
     
     /**
@@ -71,6 +85,6 @@ public class Server {
      * @param handler ClientHandler that will be removed
      */
     public void removeHandler(ClientHandler handler) {
-        // TODO insert body
+    	threads.remove(handler);
     }
 }
